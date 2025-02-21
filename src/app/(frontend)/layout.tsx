@@ -1,5 +1,8 @@
 import React from 'react'
 import './styles.css'
+import { SpinnerContextProvider } from '@/components/spinner-context-provider'
+import { HeroUIProvider } from '@heroui/system'
+import { Loader } from '@/components/spinner'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
@@ -12,7 +15,12 @@ export default async function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body>
-        <main>{children}</main>
+        <HeroUIProvider>
+          <SpinnerContextProvider>
+            <Loader />
+            <main>{children}</main>
+          </SpinnerContextProvider>
+        </HeroUIProvider>
       </body>
     </html>
   )

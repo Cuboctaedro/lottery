@@ -28,5 +28,10 @@ export const Gifts: CollectionConfig = {
       hasMany: false,
       unique: true,
     },
+    {
+      name: 'delivered',
+      type: 'checkbox',
+      defaultValue: false,
+    },
   ],
 }

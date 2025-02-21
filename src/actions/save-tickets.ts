@@ -8,12 +8,18 @@ export const saveTickets = async (formData: FormData) => {
 
   const ticketsArray: Array<number> = []
 
+  const createdTickets = []
+
   const ticketsString = formData.get('tickets')
+  console.log(ticketsString)
+
   if (ticketsString) {
     const cleared = ticketsString
       .toString()
       .trim()
       .replaceAll(/[^0-9,-]/g, '')
+    console.log(cleared)
+
     const intervalsArray = cleared.split(',')
     for (let i = 0; i < intervalsArray.length; i++) {
       const interval = intervalsArray[i]
@@ -29,7 +35,6 @@ export const saveTickets = async (formData: FormData) => {
       }
     }
   }
-  console.log(ticketsArray)
   for (let h = 0; h < ticketsArray.length; h++) {
     const number = ticketsArray[h]
     const ticket = await payload.create({
@@ -39,5 +44,8 @@ export const saveTickets = async (formData: FormData) => {
       },
     })
     console.log(ticket)
+    createdTickets.push(ticket.id)
   }
+
+  return createdTickets
 }

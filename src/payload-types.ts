@@ -161,6 +161,7 @@ export interface Gift {
   shop?: string | null;
   number?: number | null;
   ticket?: (string | null) | Ticket;
+  delivered?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -281,6 +282,7 @@ export interface GiftsSelect<T extends boolean = true> {
   shop?: T;
   number?: T;
   ticket?: T;
+  delivered?: T;
   updatedAt?: T;
   createdAt?: T;
 }
