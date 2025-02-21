@@ -13,7 +13,7 @@ const TicketsPage = async () => {
     page: 1,
     limit: 10000,
     pagination: false,
-    sort: '-number',
+    sort: 'number',
   })
 
   return (

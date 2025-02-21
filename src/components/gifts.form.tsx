@@ -29,7 +29,7 @@ export const GiftsForm = () => {
         <Textarea
           name="giftslist"
           className="w-full"
-          label="Gifts"
+          label="Presents"
           placeholder="number, present, shop"
         />
         <div className="py-6">
@@ -38,7 +38,7 @@ export const GiftsForm = () => {
           </Button>
         </div>
       </Form>
-      {newGifts > 0 && <p>{`${newGifts} new gifts added!`}</p>}
+      {newGifts > 0 && <p>{`${newGifts} new presents added!`}</p>}
     </>
   )
 }

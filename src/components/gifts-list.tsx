@@ -8,7 +8,7 @@ interface GiftsListProps {
 export const GiftsList = ({ gifts }: GiftsListProps) => {
   return (
     <section>
-      <h2 className="font-bold text-lg pb-2">Gifts</h2>
+      <h2 className="font-bold text-lg pb-2">Presents</h2>
       <ScrollShadow className="w-[300px] h-[400px] border border-solid border-gray-200 p-3">
         {gifts.map((doc) => (
           <p key={doc.id}>{`${doc.number} - ${doc.title} - ${doc.shop}`}</p>
