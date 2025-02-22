@@ -13,6 +13,7 @@ export const drawNumbers = async () => {
     limit: 10000,
     pagination: false,
   })
+
   const ticketsData = await payload.find({
     collection: 'tickets',
     overrideAccess: true,
@@ -22,8 +23,12 @@ export const drawNumbers = async () => {
   })
 
   if (Array.isArray(giftsData.docs) && Array.isArray(ticketsData.docs)) {
+    const newTickets = ticketsData.docs.filter((d) => d.present?.docs?.length === 0)
+
+    const firstTickets = newTickets.slice(0, 50)
+
     const gifts = giftsData.docs
-    const tickets = ticketsData.docs
+    const tickets = firstTickets
 
     for (let i = 0; i < gifts.length; i++) {
       const gift = gifts[i]

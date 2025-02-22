@@ -73,7 +73,11 @@ export interface Config {
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    tickets: {
+      present: 'gifts';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
@@ -172,6 +176,10 @@ export interface Gift {
 export interface Ticket {
   id: string;
   number?: number | null;
+  present?: {
+    docs?: (string | Gift)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -292,6 +300,7 @@ export interface GiftsSelect<T extends boolean = true> {
  */
 export interface TicketsSelect<T extends boolean = true> {
   number?: T;
+  present?: T;
   updatedAt?: T;
   createdAt?: T;
 }

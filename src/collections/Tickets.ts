@@ -25,5 +25,11 @@ export const Tickets: CollectionConfig = {
         step: 1,
       },
     },
+    {
+      name: 'present',
+      type: 'join',
+      collection: 'gifts',
+      on: 'ticket',
+    },
   ],
 }

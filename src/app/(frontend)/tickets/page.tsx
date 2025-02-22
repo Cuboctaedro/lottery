@@ -10,12 +10,14 @@ const TicketsPage = async () => {
 
   const result = await payload.find({
     collection: 'tickets',
-    depth: 0,
+    depth: 1,
     page: 1,
     limit: 10000,
     pagination: false,
     sort: 'number',
   })
+
+  console.log(result.docs[5])
 
   const headers = await nextHeaders()
   const authResult = await payload.auth({ headers })

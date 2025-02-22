@@ -10,7 +10,7 @@ const TicketsPage = async () => {
 
   const result = await payload.find({
     collection: 'gifts',
-    depth: 0,
+    depth: 1,
     page: 1,
     limit: 10000,
     pagination: false,
