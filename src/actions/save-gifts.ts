@@ -15,18 +15,22 @@ export const saveGifts = async (formData: FormData) => {
     for (let i = 0; i < giftsArray.length; i++) {
       const gift = giftsArray[i]
       const [number, title, shop] = gift.split(',')
-      const newGift = await payload.create({
-        collection: 'gifts',
-        overrideAccess: true,
-        data: {
-          number: parseInt(number.trim()),
-          title: title.trim(),
-          shop: shop.trim(),
-          delivered: false,
-        },
-      })
-      console.log(newGift)
-      newGifts.push(newGift)
+      try {
+        const newGift = await payload.create({
+          collection: 'gifts',
+          overrideAccess: true,
+          data: {
+            number: parseInt(number.trim()),
+            title: title.trim(),
+            shop: shop.trim(),
+            delivered: false,
+          },
+        })
+        console.log(newGift)
+        newGifts.push(newGift)
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
   return newGifts

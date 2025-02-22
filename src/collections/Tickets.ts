@@ -31,5 +31,10 @@ export const Tickets: CollectionConfig = {
       collection: 'gifts',
       on: 'ticket',
     },
+    {
+      name: 'drawn',
+      type: 'checkbox',
+      defaultValue: false,
+    },
   ],
 }

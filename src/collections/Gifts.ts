@@ -46,5 +46,10 @@ export const Gifts: CollectionConfig = {
       type: 'checkbox',
       defaultValue: false,
     },
+    {
+      name: 'drawn',
+      type: 'checkbox',
+      defaultValue: false,
+    },
   ],
 }

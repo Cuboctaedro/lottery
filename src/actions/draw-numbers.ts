@@ -12,6 +12,11 @@ export const drawNumbers = async () => {
     depth: 1,
     limit: 10000,
     pagination: false,
+    where: {
+      drawn: {
+        not_equals: true,
+      },
+    },
   })
 
   const ticketsData = await payload.find({
@@ -23,29 +28,42 @@ export const drawNumbers = async () => {
   })
 
   if (Array.isArray(giftsData.docs) && Array.isArray(ticketsData.docs)) {
-    const newTickets = ticketsData.docs.filter((d) => d.present?.docs?.length === 0)
-
-    const firstTickets = newTickets.slice(0, 50)
+    const newTickets = ticketsData.docs.filter((d) => d.drawn !== true)
 
     const gifts = giftsData.docs
-    const tickets = firstTickets
 
-    for (let i = 0; i < gifts.length; i++) {
-      const gift = gifts[i]
-      const ticketIndex = Math.floor(Math.random() * tickets.length)
-      const luckyTicket = tickets[ticketIndex]
+    const limit = newTickets.length < 50 ? newTickets.length : 50
 
-      const updatedGift = await payload.update({
-        collection: 'gifts',
-        overrideAccess: true,
-        id: gift.id,
-        data: {
-          ticket: luckyTicket.id,
-        },
-      })
+    for (let i = 0; i < limit; i++) {
+      try {
+        const gift = gifts[i]
+        const ticketIndex = Math.floor(Math.random() * newTickets.length)
+        const luckyTicket = newTickets[ticketIndex]
 
-      console.log(updatedGift)
-      tickets.splice(ticketIndex, 1)
+        const updatedGift = await payload.update({
+          collection: 'gifts',
+          overrideAccess: true,
+          id: gift.id,
+          data: {
+            ticket: luckyTicket.id,
+            drawn: true,
+          },
+        })
+
+        const updatedTicket = await payload.update({
+          collection: 'tickets',
+          overrideAccess: true,
+          id: luckyTicket.id,
+          data: {
+            drawn: true,
+          },
+        })
+
+        console.log(updatedGift)
+        newTickets.splice(ticketIndex, 1)
+      } catch (err) {
+        console.error(err)
+      }
     }
   }
 }

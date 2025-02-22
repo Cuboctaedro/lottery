@@ -28,7 +28,7 @@ export const LotteryButton = ({ disabled }: LotteryButtonProps) => {
       }}
       isLoading={showSpinner}
     >
-      New Lottery
+      Draw for 50 presents
     </Button>
   )
 }

@@ -166,6 +166,7 @@ export interface Gift {
   number?: number | null;
   ticket?: (string | null) | Ticket;
   delivered?: boolean | null;
+  drawn?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -180,6 +181,7 @@ export interface Ticket {
     docs?: (string | Gift)[] | null;
     hasNextPage?: boolean | null;
   } | null;
+  drawn?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -291,6 +293,7 @@ export interface GiftsSelect<T extends boolean = true> {
   number?: T;
   ticket?: T;
   delivered?: T;
+  drawn?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -301,6 +304,7 @@ export interface GiftsSelect<T extends boolean = true> {
 export interface TicketsSelect<T extends boolean = true> {
   number?: T;
   present?: T;
+  drawn?: T;
   updatedAt?: T;
   createdAt?: T;
 }
