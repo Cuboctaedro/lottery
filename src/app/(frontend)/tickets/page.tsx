@@ -3,6 +3,7 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { TicketsForm } from '@/components/tickets-form'
 import { TicketsList } from '@/components/tickets-list'
+import { headers as nextHeaders } from 'next/headers'
 
 const TicketsPage = async () => {
   const payload = await getPayload({ config })
@@ -16,13 +17,14 @@ const TicketsPage = async () => {
     sort: 'number',
   })
 
+  const headers = await nextHeaders()
+  const authResult = await payload.auth({ headers })
+
   return (
     <main className="container mx-auto py-8">
       <div className="grid gap-8 grid-cols-2">
         <TicketsList tickets={result.docs} />
-        <div>
-          <TicketsForm />
-        </div>
+        <div>{authResult.user && <TicketsForm />}</div>
       </div>
     </main>
   )

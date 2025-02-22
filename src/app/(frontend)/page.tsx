@@ -3,9 +3,13 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { LotteryButton } from '@/components/lottery-button'
 import { FullList } from '@/components/full-list'
+import { headers as nextHeaders } from 'next/headers'
 
 export default async function HomePage() {
   const payload = await getPayload({ config })
+
+  const headers = await nextHeaders()
+  const authResult = await payload.auth({ headers })
 
   const result = await payload.find({
     collection: 'gifts',
@@ -16,14 +20,14 @@ export default async function HomePage() {
     sort: 'number',
   })
 
-  // console.log(typeof result.docs[0].ticket === 'undefined')
-
   return (
     <>
       {Array.isArray(result.docs) && result.docs.length > 0 && (
         <main>
           <div className="flex py-12 items-center justify-center">
-            <LotteryButton disabled={typeof result.docs[0].ticket !== 'undefined'} />
+            {authResult.user && (
+              <LotteryButton disabled={typeof result.docs[0].ticket !== 'undefined'} />
+            )}
           </div>
           <div>
             <FullList gifts={result.docs} />

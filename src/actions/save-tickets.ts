@@ -11,14 +11,12 @@ export const saveTickets = async (formData: FormData) => {
   const createdTickets = []
 
   const ticketsString = formData.get('tickets')
-  console.log(ticketsString)
 
   if (ticketsString) {
     const cleared = ticketsString
       .toString()
       .trim()
       .replaceAll(/[^0-9,-]/g, '')
-    console.log(cleared)
 
     const intervalsArray = cleared.split(',')
     for (let i = 0; i < intervalsArray.length; i++) {
@@ -39,7 +37,7 @@ export const saveTickets = async (formData: FormData) => {
     const number = ticketsArray[h]
     const ticket = await payload.create({
       collection: 'tickets',
-      overrideAccess: false,
+      overrideAccess: true,
       data: {
         number: number,
       },

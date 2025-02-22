@@ -17,7 +17,7 @@ export const saveGifts = async (formData: FormData) => {
       const [number, title, shop] = gift.split(',')
       const newGift = await payload.create({
         collection: 'gifts',
-        overrideAccess: false,
+        overrideAccess: true,
         data: {
           number: parseInt(number.trim()),
           title: title.trim(),

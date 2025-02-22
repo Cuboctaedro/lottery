@@ -8,14 +8,14 @@ export const drawNumbers = async () => {
 
   const giftsData = await payload.find({
     collection: 'gifts',
-    overrideAccess: true,
+    overrideAccess: false,
     depth: 1,
     limit: 10000,
     pagination: false,
   })
   const ticketsData = await payload.find({
     collection: 'tickets',
-    overrideAccess: true,
+    overrideAccess: false,
     depth: 1,
     limit: 10000,
     pagination: false,
