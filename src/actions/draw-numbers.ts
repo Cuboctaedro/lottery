@@ -32,7 +32,7 @@ export const drawNumbers = async () => {
 
       const updatedGift = await payload.update({
         collection: 'gifts',
-        overrideAccess: true,
+        overrideAccess: false,
         id: gift.id,
         data: {
           ticket: luckyTicket.id,
