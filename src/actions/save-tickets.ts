@@ -39,6 +39,7 @@ export const saveTickets = async (formData: FormData) => {
     const number = ticketsArray[h]
     const ticket = await payload.create({
       collection: 'tickets',
+      overrideAccess: true,
       data: {
         number: number,
       },

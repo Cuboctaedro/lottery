@@ -8,12 +8,14 @@ export const drawNumbers = async () => {
 
   const giftsData = await payload.find({
     collection: 'gifts',
+    overrideAccess: true,
     depth: 1,
     limit: 10000,
     pagination: false,
   })
   const ticketsData = await payload.find({
     collection: 'tickets',
+    overrideAccess: true,
     depth: 1,
     limit: 10000,
     pagination: false,
@@ -30,6 +32,7 @@ export const drawNumbers = async () => {
 
       const updatedGift = await payload.update({
         collection: 'gifts',
+        overrideAccess: true,
         id: gift.id,
         data: {
           ticket: luckyTicket.id,
