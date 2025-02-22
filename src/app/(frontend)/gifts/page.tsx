@@ -31,3 +31,5 @@ const TicketsPage = async () => {
 }
 
 export default TicketsPage
+
+export const dynamic = 'force-dynamic'
