@@ -12,6 +12,8 @@ interface LotteryButtonProps {
 export const LotteryButton = ({ disabled }: LotteryButtonProps) => {
   const { showSpinner, setShowSpinner } = useContext(SpinnerContext)
 
+  const isLocal = process.env.NEXT_PUBLIC_IS_LOCAL === '1'
+
   const startLottery = async () => {
     setShowSpinner(true)
     await drawNumbers()
@@ -28,7 +30,7 @@ export const LotteryButton = ({ disabled }: LotteryButtonProps) => {
       }}
       isLoading={showSpinner}
     >
-      Draw for 50 presents
+      {isLocal ? `New Lottery` : `Draw for 50 presents`}
     </Button>
   )
 }

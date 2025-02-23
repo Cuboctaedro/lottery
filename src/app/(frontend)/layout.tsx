@@ -9,7 +9,7 @@ import { cookies } from 'next/headers'
 
 export const metadata = {
   description: 'A blank template using Payload in a Next.js app.',
-  title: 'Payload Blank Template',
+  title: 'Party Lottery - 36 School',
 }
 
 export default async function RootLayout(props: { children: React.ReactNode }) {

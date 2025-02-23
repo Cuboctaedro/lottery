@@ -6,6 +6,8 @@ import config from '@payload-config'
 export const drawNumbers = async () => {
   const payload = await getPayload({ config })
 
+  const isLocal = process.env.NEXT_PUBLIC_IS_LOCAL === '1'
+
   const giftsData = await payload.find({
     collection: 'gifts',
     overrideAccess: true,
@@ -32,7 +34,7 @@ export const drawNumbers = async () => {
 
     const gifts = giftsData.docs
 
-    const limit = newTickets.length < 50 ? newTickets.length : 50
+    const limit = isLocal ? newTickets.length : (newTickets.length < 50 ? newTickets.length : 50)
 
     for (let i = 0; i < limit; i++) {
       try {
